@@ -1,4 +1,4 @@
-package main
+package golight
 
 import(
     "log"
@@ -8,11 +8,11 @@ import(
     var productId uint16 = 0xB080
 
     // colors
-    var green byte = 0x01
-    var red byte = 0x02
-    var yellow byte = 0x04
+    var Green byte = 0x01
+    var Red byte = 0x02
+    var Yellow byte = 0x04
 
-func on(color byte) {
+func On(color byte) {
     leds, err := hid.Open(vendorId, productId, "")
     if err != nil {
         log.Fatalf("Could not open leds device: %s", err)
@@ -45,7 +45,7 @@ func on(color byte) {
 
     bytesWritten, err := leds.SendFeatureReport(data)
     if err != nil {
-        log.Fatalf("Could not send feature report to do dummy action. %s\n", err)
+        log.Fatalf("Could not write bytes to delcom LED action. %s\n", err)
     }
 
     if bytesWritten == -1 {
@@ -53,7 +53,7 @@ func on(color byte) {
     }
 }
 
-func off(color byte) {
+func Off(color byte) {
     leds, err := hid.Open(vendorId, productId, "")
     if err != nil {
         log.Fatalf("Could not open leds device: %s", err)
@@ -92,10 +92,4 @@ func off(color byte) {
     if bytesWritten == -1 {
         log.Fatalf("No bytes written")
     }
-}
-
-
-func main() {
-    off(green)
-    off(red)
 }
