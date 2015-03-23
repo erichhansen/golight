@@ -34,14 +34,24 @@ func Off(color byte) {
     sendCommand(command{color: color, shutdown:true})
 }
 
-
-func sendCommand(comm command) {
+func sendCommand(comm command)  {
     leds, err := hid.Open(vendorId, productId, "")
     if err != nil {
         log.Fatalf("Could not open leds device: %s", err)
     }
     defer leds.Close()
 
+    
+    data := getCommandData(comm);
+
+    _, err = leds.SendFeatureReport(data)
+    if err != nil {
+        log.Fatalf("Could not write bytes to delcom LED action. %s\n", err)
+    }
+}
+
+func getCommandData(comm command) []byte {
+    
     /*
         Major Command 1 Byte
         Minor Command 1 Byte
@@ -85,9 +95,5 @@ func sendCommand(comm command) {
     data[5] = 0x00   // DataHID[1]
     data[6] = 0x00   // DataHID[2]
     data[7] = 0x00   // DataHID[3]
-
-    _, err = leds.SendFeatureReport(data)
-    if err != nil {
-        log.Fatalf("Could not write bytes to delcom LED action. %s\n", err)
-    }
+    return data;
 }
