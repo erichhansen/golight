@@ -49,8 +49,8 @@ Then install this package with `go get github.com/erichhansen/golight`
 
 ### Usage
 There are 3 main methods - On, Off, and Flash. 
-- *On* Turn light on
-- *Off* Turn light off
-- *Flash* Make light flash. (Note, you must still call on to turn the light on after setting up flash).
+- **On** Turn light on
+- **Off** Turn light off
+- **Flash** Make light flash. (Note, you must still call on to turn the light on after setting up flash).
 
 For more information communicating with the delcom light refer the the [USB IO HID Datasheet](http://www.delcomproducts.com/downloads/USBIOHID.pdf).
