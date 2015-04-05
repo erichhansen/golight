@@ -20,7 +20,11 @@ type command struct {
 }
 
 func Flash(color byte){
+  // turn on flash
   comm := command{color: color, flash: true}
+  comm.sendCommand()
+  // then turn on the light
+  comm = command{color: color}
   comm.sendCommand()
 }
 
