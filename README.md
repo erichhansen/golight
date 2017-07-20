@@ -3,7 +3,7 @@
 A [go](http://golang.org) package for turning a [Delcom](http://www.delcomproducts.com/products_usblmp.asp) led light red, green, or yellow.
 
 ### Installation
-This project depends on [go.hid](https://github.com/GeertJohan/go.hid) which is a wrapper for [signal11/hidapi](https://github.com/signal11/hidapi).
+This project depends on [go.hid](https://github.com/karalabe/hid) which is a wrapper for [signal11/hidapi](https://github.com/signal11/hidapi).
 
 To install hidapi:
 
